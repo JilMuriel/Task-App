@@ -1,0 +1,33 @@
+.home {
+  height: 100vh;
+}
+.home__inner-left {
+  padding: 100px 0;
+  box-sizing: border-box;
+  border-right: 1px solid #dedede;
+}
+.home__inner-right {
+  padding: 100px 0;
+  box-sizing: border-box;
+}
+.home__header {
+  padding: 0px 50px;
+  margin-bottom: 50px;
+}
+
+.home__headline {
+  padding: 0 50px;
+  margin-bottom: 30px;
+}
+.home__menu {
+  margin-bottom: 50px;
+}
+.home__form {
+  padding: 0 35px;
+}
+/* 
+Search Form */
+.search__form {
+  margin-bottom: 20px;
+  color: rgba(34, 34, 34, 0.486);
+}
