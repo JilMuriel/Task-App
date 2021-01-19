@@ -1,0 +1,11 @@
+.dashboard__title {
+  font-size: 37px;
+  font-weight: 600;
+}
+.dashboard__desc {
+  font-size: 18px;
+  color: #6b6b6b;
+}
+.dashboard__content {
+  margin-top: 50px;
+}
