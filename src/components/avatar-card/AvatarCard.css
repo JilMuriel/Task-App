@@ -1,0 +1,15 @@
+.avatar-card__image {
+  height: 45px !important;
+  width: 45px !important;
+}
+.avatar-card__username {
+  margin: 0 0 10px;
+  font-size: 20px;
+  font-weight: 500 !important;
+  line-height: 1;
+}
+.avatar-card__email {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1;
+}
