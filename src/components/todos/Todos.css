@@ -1,0 +1,17 @@
+.todos {
+  width: 100%;
+}
+.todos__header {
+  margin-bottom: 25px;
+}
+.btn__add {
+  margin-top: 10px;
+  padding: 0 5px;
+  height: 45px;
+  cursor: pointer;
+  transition: ease-in-out 0.1s;
+  border-radius: 3px;
+}
+.btn__add:hover {
+  background: #ebecf0;
+}
