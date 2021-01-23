@@ -82,7 +82,6 @@ export const Home = () => {
                       inputProps={{ "aria-label": "naked" }}
                     />
                   </Box>
-                  <Kanban />
                 </DashboardContentLayout>
                 <h1></h1>
               </Route>
