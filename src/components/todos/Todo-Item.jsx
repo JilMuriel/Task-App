@@ -8,17 +8,18 @@ import InputBase from "@material-ui/core/InputBase";
 
 export const TodoItem = ({ title, priority, start, due, ...props }) => (
   <Grid container {...props}>
-    <Grid item sm={3}>
+    <Grid item sm={4}>
       <Box display="flex" alignItems="center">
         <DragIndicatorIcon color="secondary" />
         <FormControlLabel control={<Checkbox color="primary" />} />
         <InputBase
           defaultValue={title}
           inputProps={{ "aria-label": "naked" }}
+          fullWidth
         />
       </Box>
     </Grid>
-    <Grid item sm={3}>
+    <Grid item sm={2}>
       <Box textAlign="right">{priority}</Box>
     </Grid>
     <Grid item sm={3}>
