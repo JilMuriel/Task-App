@@ -10,7 +10,6 @@ import SideMenu from "../../components/side-menu/Side-menu";
 import "./Home.css";
 import DashboardContentLayout from "../../components/dashboard/Dashboard-content-layout";
 import Todos from "../../components/todos/Todos";
-import Kanban from "../../components/kanban/Kanban";
 
 //Icon
 import InputBase from "@material-ui/core/InputBase";
