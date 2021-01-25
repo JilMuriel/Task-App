@@ -4,7 +4,6 @@ import { Box, Grid } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import "./Todos.css";
 import TodoItem from "./Todo-Item";
-import ButtonBase from "@material-ui/core/ButtonBase";
 
 export const Todos = () => {
   const uid = uuidv4();
@@ -48,12 +47,12 @@ export const Todos = () => {
       },
     ]);
   };
-  //Form input state for every input tag
-  const [formInput, setFormInput] = useState("");
-  const handleOnChange = (todoItemData) => {
-    const [id, title, priority, start, due, completed] = todoItemData;
-    //update the data and update the title of the selected todo
-  };
+  // //Form input state for every input tag
+  // const [formInput, setFormInput] = useState("");
+  // const handleOnChange = (todoItemData) => {
+  //   const [id, title, priority, start, due, completed] = todoItemData;
+  //   //update the data and update the title of the selected todo
+  // };
 
   return (
     <div className="todos">

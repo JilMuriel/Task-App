@@ -83,7 +83,6 @@ export const Home = () => {
                     />
                   </Box>
                 </DashboardContentLayout>
-                <h1></h1>
               </Route>
               <Route path="/assigned">
                 <h1>My Assigned</h1>
