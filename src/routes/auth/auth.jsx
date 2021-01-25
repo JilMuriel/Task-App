@@ -10,10 +10,12 @@ const useStyles = makeStyles({
     fontSize: "46px",
     color: "#3A3A3A",
     fontWeight: "600",
+    marginBottom: "20px",
   },
   desc: {
     fontSize: "18px",
     color: "#3A3A3A",
+    marginBottom: "20px",
   },
   login: {
     minWidth: "562px",
@@ -46,12 +48,14 @@ export const Auth = () => {
               label="Username"
               type="text"
               value={userName}
+              placeholder="Ex. JohnDoe"
               onChange={(e) => setUserName(e.target.value)}
             />
             <InputField
               id="password-field"
               label="Password"
               type="password"
+              placeholder="Enter your password"
               value={passWord}
               onChange={(e) => setPassword(e.target.value)}
             />
