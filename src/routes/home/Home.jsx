@@ -90,6 +90,10 @@ export const Home = () => {
               <Route path="/task">
                 <h1>My Task</h1>
               </Route>
+              <Route path="*">
+                <h1>404 Page not found</h1>
+                <p>The page that you are trying to access is not found</p>
+              </Route>
               <Redirect to="/my-day" />
             </Switch>
           </Container>
