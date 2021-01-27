@@ -51,6 +51,13 @@ export const SideMenu = ({ title }) => {
             onActive="home__nav-item-active"
           />
         </li>
+        <li>
+          <SideMenuItem
+            title="Task"
+            to="/taskasd"
+            onActive="home__nav-item-active"
+          />
+        </li>
       </ul>
     </>
   );
