@@ -24,6 +24,9 @@ const useStyles = makeStyles({
   leftWrapper: {
     background: "#2755EE",
   },
+  forgotPassword: {
+    fontSize: '18px',
+  }
 });
 export const Auth = () => {
   const classes = useStyles();
