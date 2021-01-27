@@ -39,7 +39,12 @@ export const InputField = ({ ...props }) => {
   const labelClasses = useStyles();
   return (
     <FormControl className={classes.margin} fullWidth display="block">
-      <InputLabel shrink className={labelClasses.label} htmlFor={props.id}>
+      <InputLabel
+        shrink
+        focused={false}
+        className={labelClasses.label}
+        htmlFor={props.id}
+      >
         {props.label}
       </InputLabel>
       <BootstrapInput {...props} />
