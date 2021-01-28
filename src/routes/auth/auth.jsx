@@ -3,19 +3,20 @@ import { Box, Grid, Typography } from "@material-ui/core";
 import InputField from "../../components/input-field/Input-Field";
 import { makeStyles } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import ButtonBase from "@material-ui/core/ButtonBase";
 
 const useStyles = makeStyles({
   authLayout: {
     minHeight: "100vh",
   },
   title: {
-    fontSize: "46px",
+    fontSize: "40px",
     color: "#3A3A3A",
     fontWeight: "600",
     marginBottom: "20px",
   },
   desc: {
-    fontSize: "18px",
+    fontSize: "17px",
     color: "#3A3A3A",
     marginBottom: "20px",
   },
@@ -25,9 +26,43 @@ const useStyles = makeStyles({
   },
   leftWrapper: {
     background: "#2755EE",
+    backgroundSize: "cover",
+    backgroundPosition: "bottom center",
   },
   forgotPassword: {
-    fontSize: "18px",
+    fontSize: "17px",
+  },
+  signInBtn: {
+    width: "100%",
+    height: "50px",
+    fontSize: "17px",
+    backgroundColor: "#4F75F1",
+    borderRadius: "4px",
+    color: "white",
+    boxShadow: " 0 4px 13px rgba(0,0,0,0.27)",
+    marginBottom: "25px",
+  },
+  btnFb: {
+    width: "100%",
+    height: "50px",
+    fontSize: "17px",
+    borderRadius: "4px",
+    boxShadow: "0 4px 13px rgba(0,0,0,0.27)",
+    background: "#3b5998",
+    color: "white",
+  },
+  btnGoogle: {
+    width: "100%",
+    height: "50px",
+    fontSize: "17px",
+    borderRadius: "4px",
+    boxShadow: "0 4px 13px rgba(0,0,0,0.27)",
+    background: "white",
+  },
+  divider: {
+    margin: "40px 0 60px",
+    fontSize: "17px",
+    color: "#8A8A8A",
   },
 });
 
@@ -70,7 +105,7 @@ export const Auth = () => {
               value={passWord}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <button>Sign In</button>
+            <ButtonBase className={classes.signInBtn}>Sign In</ButtonBase>
           </form>
           <Box>
             <Typography className={classes.desc}>
@@ -78,13 +113,26 @@ export const Auth = () => {
             </Typography>
             <Typography className={classes.desc}>Forgot password?</Typography>
           </Box>
-          <Box>
+          <Box
+            display="flex"
+            justifyContent="center"
+            className={classes.divider}
+          >
             <Typography>OR</Typography>
           </Box>
-          <Box>
-            <button>Facebook</button>
-            <button>Google</button>
-          </Box>
+
+          <Grid container display="flex" spacing={2} alignItems="center">
+            <Grid item xs={6}>
+              <ButtonBase className={classes.btnFb}>
+                Sign in with Facebook
+              </ButtonBase>
+            </Grid>
+            <Grid item xs={6}>
+              <ButtonBase className={classes.btnGoogle}>
+                Sign in with Google
+              </ButtonBase>
+            </Grid>
+          </Grid>
         </Box>
       </Grid>
     </Grid>
