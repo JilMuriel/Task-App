@@ -46,7 +46,7 @@ export const Home = () => {
         <Grid className="home__inner-right" item sm={9} xl={9}>
           <Container>
             <Switch>
-              <Route exact path="/my-day">
+              <Route path="/my-day">
                 <DashboardContentLayout title="My Day" desc="My Day">
                   <Box
                     display="flex"
@@ -90,11 +90,11 @@ export const Home = () => {
               <Route path="/task">
                 <h1>My Task</h1>
               </Route>
+              <Redirect to="/my-day" />
               <Route path="*">
                 <h1>404 Page not found</h1>
                 <p>The page that you are trying to access is not found</p>
               </Route>
-              <Redirect to="/my-day" />
             </Switch>
           </Container>
         </Grid>

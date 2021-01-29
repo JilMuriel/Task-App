@@ -66,13 +66,32 @@ const useStyles = makeStyles({
   },
 });
 
+export const users = [
+  {
+    email: "djibrilmuriel@gmail.com",
+    password: "test123",
+  },
+  {
+    email: "11djibrilmuriel@gmail.com",
+    password: "test123",
+  },
+];
+
 export const Auth = () => {
   const classes = useStyles();
 
   const [userName, setUserName] = useState("");
   const [passWord, setPassword] = useState("");
+  const [login, setLogin] = useState(false);
 
   const matches = useMediaQuery("(min-width:600px)");
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    users.find((user) => {
+      if (user.email === userName) return setLogin(true);
+    });
+  };
 
   return (
     <Grid container className={classes.authLayout}>
@@ -105,7 +124,9 @@ export const Auth = () => {
               value={passWord}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <ButtonBase className={classes.signInBtn}>Sign In</ButtonBase>
+            <ButtonBase className={classes.signInBtn} onClick={handleLogin}>
+              Sign In
+            </ButtonBase>
           </form>
           <Box>
             <Typography className={classes.desc}>
