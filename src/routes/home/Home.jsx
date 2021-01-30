@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
@@ -90,7 +90,6 @@ export const Home = () => {
               <Route path="/task">
                 <h1>My Task</h1>
               </Route>
-              <Redirect to="/my-day" />
               <Route path="*">
                 <h1>404 Page not found</h1>
                 <p>The page that you are trying to access is not found</p>
