@@ -44,6 +44,7 @@ export const InputField = ({ ...props }) => {
         focused={false}
         className={labelClasses.label}
         htmlFor={props.id}
+        {...props}
       >
         {props.label}
       </InputLabel>
