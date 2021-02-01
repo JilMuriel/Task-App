@@ -3,13 +3,14 @@ import { Switch, Route } from "react-router-dom";
 
 import Auth from "./auth/auth";
 import Home from "./home/Home";
+import PrivateRoute from "./private-route";
 
 export const Main = () => {
   return (
     <Switch>
-      <Route exact path="/">
+      <PrivateRoute exact path="/">
         <Home />
-      </Route>
+      </PrivateRoute>
       <Route path="/auth">
         <Auth />
       </Route>
