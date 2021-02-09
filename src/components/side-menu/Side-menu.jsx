@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { Typography } from "@material-ui/core";
 import "./Side-menu.css";
+import { useAuth } from "../../contexts/AuthContext";
 
 export const SideMenuItem = ({ onActive, title, ...props }) => (
   <NavLink className="home__nav-item" {...props} activeClassName={onActive}>
@@ -10,6 +11,7 @@ export const SideMenuItem = ({ onActive, title, ...props }) => (
 );
 
 export const SideMenu = ({ title }) => {
+  const { logout } = useAuth();
   return (
     <>
       <Typography className="side-menu__title" variant="h5">
@@ -19,7 +21,7 @@ export const SideMenu = ({ title }) => {
         <li>
           <SideMenuItem
             title="My Day"
-            to="/my-day"
+            to="/todo"
             onActive="home__nav-item-active"
           />
         </li>
@@ -57,6 +59,9 @@ export const SideMenu = ({ title }) => {
             to="/taskasd"
             onActive="home__nav-item-active"
           />
+        </li>
+        <li>
+          <button onClick={logout}>Signout</button>
         </li>
       </ul>
     </>
