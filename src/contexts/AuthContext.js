@@ -10,10 +10,15 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState();
   const history = useHistory();
+
   async function signup(email, password) {
     return await auth.createUserWithEmailAndPassword(email, password);
-    history.push("/");
   }
+
+  function login(email, password) {
+    return auth.signInWithEmailAndPassword(email, password);
+  }
+
   function logout() {
     return auth.signOut();
   }
@@ -28,6 +33,7 @@ export const AuthProvider = ({ children }) => {
     currentUser,
     signup,
     logout,
+    login,
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
