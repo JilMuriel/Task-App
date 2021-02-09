@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useRouteMatch } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
@@ -30,10 +30,11 @@ const useStyles = makeStyles({
   },
 });
 
-export const Auth = () => {
+export const Auth = ({ ...children }) => {
   const classes = useStyles();
   const matches = useMediaQuery("(min-width:600px)");
-
+  const { path } = useRouteMatch();
+  console.log("path", path);
   return (
     <Grid container className={classes.authLayout}>
       {matches ? (
@@ -41,10 +42,10 @@ export const Auth = () => {
       ) : null}
       <Grid container item display="flex" alignItems="center" xs="6">
         <Switch>
-          <Route exact path="/auth/">
+          <Route path={`${path}/login`}>
             <Login />
           </Route>
-          <Route exact path="/auth/register">
+          <Route path={`${path}/register`}>
             <Register />
           </Route>
         </Switch>
