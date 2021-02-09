@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Box, Typography } from "@material-ui/core";
 import InputField from "../../components/input-field/Input-Field";
 import ButtonBase from "@material-ui/core/ButtonBase";
 import { makeStyles } from "@material-ui/core/styles";
+import { useHistory } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 
 const useStyles = makeStyles({
   title: {
@@ -53,9 +55,24 @@ const useStyles = makeStyles({
   },
 });
 export const Login = () => {
+  const { login, currentUser } = useAuth();
   const classes = useStyles();
+  const history = useHistory();
   const [userName, setUserName] = useState("");
   const [passWord, setPassword] = useState("");
+
+  useEffect(() => (document.title = "Welcome"), []);
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      await login(userName, passWord);
+      history.push("/");
+    } catch (error) {
+      console.log("login message", error);
+    }
+  }
+
   return (
     <Box className={classes.login}>
       <Typography variant="h1" className={classes.title}>
@@ -64,7 +81,7 @@ export const Login = () => {
       <Typography className={classes.desc}>
         Enter your email and password to login on your dashboard.
       </Typography>
-      <form>
+      <form onSubmit={handleSubmit}>
         <InputField
           id="username-field"
           label="Username"
@@ -73,6 +90,7 @@ export const Login = () => {
           placeholder="Ex. JohnDoe"
           onChange={(e) => setUserName(e.target.value)}
         />
+        <br />
         <InputField
           id="password-field"
           label="Password"
@@ -81,11 +99,12 @@ export const Login = () => {
           value={passWord}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <ButtonBase className={classes.signInBtn}>Sign In</ButtonBase>
+        {/* <ButtonBase className={classes.signInBtn}>Sign In</ButtonBase> */}
+        <button>Sign in</button>
       </form>
       <Box>
         <Typography className={classes.desc}>
-          Don't have an account? <Link to="/register">Sign up</Link>
+          Don't have an account? <Link to="/auth/register">Sign up</Link>
         </Typography>
         <Typography className={classes.desc}>Forgot password?</Typography>
       </Box>
