@@ -85,7 +85,7 @@ export const Login = () => {
       </form>
       <Box>
         <Typography className={classes.desc}>
-          Don't have an account? <Link to="/auth/register">Sign up</Link>
+          Don't have an account? <Link to="/register">Sign up</Link>
         </Typography>
         <Typography className={classes.desc}>Forgot password?</Typography>
       </Box>

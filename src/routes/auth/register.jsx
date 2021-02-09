@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { Box, Typography } from "@material-ui/core";
 import InputField from "../../components/input-field/Input-Field";
-// import ButtonBase from "@material-ui/core/ButtonBase";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
 import { useAuth } from "../../contexts/AuthContext";
+import { useHistory } from "react-router-dom";
+//Spinner
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const useStyles = makeStyles({
   title: {
@@ -55,90 +55,86 @@ const useStyles = makeStyles({
   },
 });
 
+export const Loading = () => {
+  let classes = useStyles();
+
+  return (
+    <Box display="flex" alignItems="center">
+      <CircularProgress />
+    </Box>
+  );
+};
+
 export const Register = () => {
   const { signup, currentUser, logout } = useAuth();
+  const history = useHistory();
 
-  const [passwordMatch, setPasswordMatch] = useState(false);
-  console.log(
-    "process.env.REACT_APP_FIREBASE_API_KEY",
-    process.env.REACT_APP_FIREBASE_API_KEY
-  );
   const classes = useStyles();
-  //   const [fullName, setFullName] = useState("");
+  const [loading, setLoading] = useState(false);
   const [userEmail, setUserEmail] = useState("");
   const [passWord, setPassword] = useState("");
   const [confirmPassWord, setConfirmPassWord] = useState("");
-  console.log("currentUser", currentUser?.email);
+  const [passwordValidation, setPasswordValidation] = useState("");
+
   async function handleSubmit(e) {
     e.preventDefault();
-    // signup(userName, passWord);
     if (passWord !== confirmPassWord) {
-      setPasswordMatch(true);
+      return setPasswordValidation("Password does not match");
     }
-
     try {
+      setPasswordValidation("");
+      setLoading(true);
       await signup(userEmail, passWord);
+      history.push("/");
     } catch {
       console.log("error");
     }
+    setLoading(false);
   }
+
   return (
     <Box className={classes.login}>
-      <Typography variant="h1" className={classes.title}>
-        Register
-      </Typography>
-      <Typography className={classes.desc}>
-        {/* Enter your email and password to login on your dashboard. */}
-      </Typography>
-      <form onSubmit={handleSubmit}>
-        {/* <InputField
-          id="name-field"
-          label="Name"
-          type="text"
-          value={fullName}
-          placeholder="Ex. John Doe"
-          onChange={(e) => setFullName(e.target.value)}
-        /> */}
-        <InputField
-          id="username-field"
-          label="Email"
-          type="text"
-          value={userEmail}
-          placeholder="Ex. JohnDoe@gmail.com"
-          onChange={(e) => setUserEmail(e.target.value)}
-        />
-        <InputField
-          id="password-field"
-          label="Password"
-          type="password"
-          placeholder="Enter your password"
-          value={passWord}
-          onChange={(e) => setPassword(e.target.value)}
-          autoComplete="off"
-        />
-        <InputField
-          id="confirm-password-field"
-          label="Confirm Password"
-          type="password"
-          placeholder="Confirm your password"
-          value={confirmPassWord}
-          onChange={(e) => setConfirmPassWord(e.target.value)}
-          error={passwordMatch}
-          autoComplete="off"
-        />
-        {/* <Button variant="contained" color="primary">
-          Primary
-        </Button> */}
-        <button>sign up</button>
-        {/* <ButtonBase className={classes.signInBtn}>Sign Up</ButtonBase> */}
-        {/* <button onClick={handleSubmit}>asdasd</button> */}
-      </form>
-      <Box>
-        <Typography className={classes.desc}>
-          Already have an account? <Link to="/auth/register">Sign in</Link>
-        </Typography>
-        <button onClick={logout}>logout</button>
-      </Box>
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <Typography variant="h1" className={classes.title}>
+            Register
+          </Typography>
+          <Typography className={classes.desc}>
+            Enter your email and password to login on your dashboard.
+          </Typography>
+
+          <form onSubmit={handleSubmit}>
+            <InputField
+              id="username-field"
+              label="Email"
+              type="text"
+              value={userEmail}
+              placeholder="Ex. JohnDoe@gmail.com"
+              onChange={(e) => setUserEmail(e.target.value)}
+            />
+            <InputField
+              id="password-field"
+              label="Password"
+              type="password"
+              value={passWord}
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <InputField
+              id="confirm-password-field"
+              label="Confirm Password"
+              type="password"
+              value={confirmPassWord}
+              placeholder="Confirm you password"
+              onChange={(e) => setConfirmPassWord(e.target.value)}
+              err={passwordValidation}
+            />
+            <button>Sign me up</button>
+          </form>
+        </>
+      )}
     </Box>
   );
 };
