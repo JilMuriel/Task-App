@@ -1,8 +1,9 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, useRouteMatch, Link } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
+import { useAuth } from "../../contexts/AuthContext";
 
 import { Typography } from "@material-ui/core";
 import AvatarCard from "../../components/avatar-card/AvatarCard";
@@ -18,18 +19,25 @@ import SearchIcon from "@material-ui/icons/Search";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 
 export const Home = () => {
+  let match = useRouteMatch();
+  const { currentUser } = useAuth();
   return (
     <div>
       <Grid className="home" container>
         <Grid className="home__inner-left" item sm={3} xl={3}>
           <div className="home__header">
-            <AvatarCard username="Jil Muriel" email="djibrilmuriel@gmail.com" />
+            <AvatarCard username="Jil Muriel" email={currentUser?.email} />
           </div>
           <div className="home__headline">
             <Typography variant="h4">What's up Jil!</Typography>
           </div>
           <div className="home__menu">
             <SideMenu title="My Categories" />
+            <ul>
+              <li>
+                <Link to={`${match.url}/todo`}>Link 01</Link>
+              </li>
+            </ul>
           </div>
           <div className="home__form">
             <Box display="flex">
@@ -46,7 +54,16 @@ export const Home = () => {
         <Grid className="home__inner-right" item sm={9} xl={9}>
           <Container>
             <Switch>
-              <Route path="/my-day">
+              <Route exact path={`${match.url}/`}>
+                <h1>Hello</h1>
+              </Route>
+              <Route path={`${match.url}/todo`}>
+                <h1>Hello todo</h1>
+              </Route>
+              <Route path="*">
+                <h1>Page not found</h1>
+              </Route>
+              {/* <Route exact path="/">
                 <DashboardContentLayout title="My Day" desc="My Day">
                   <Box
                     display="flex"
@@ -65,35 +82,7 @@ export const Home = () => {
                   <div className="dashboard-title"></div>
                   <Typography variant="h6"></Typography>
                 </Box>
-              </Route>
-              <Route path="/important">
-                <h1>My Important</h1>
-              </Route>
-              <Route path="/planned">
-                <DashboardContentLayout title="My Planned">
-                  <Box
-                    display="flex"
-                    alignItems="center"
-                    className="search__form"
-                  >
-                    <SearchIcon />
-                    <InputBase
-                      placeholder="Search..."
-                      inputProps={{ "aria-label": "naked" }}
-                    />
-                  </Box>
-                </DashboardContentLayout>
-              </Route>
-              <Route path="/assigned">
-                <h1>My Assigned</h1>
-              </Route>
-              <Route path="/task">
-                <h1>My Task</h1>
-              </Route>
-              <Route path="*">
-                <h1>404 Page not found</h1>
-                <p>The page that you are trying to access is not found</p>
-              </Route>
+              </Route> */}
             </Switch>
           </Container>
         </Grid>
